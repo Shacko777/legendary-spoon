@@ -56,23 +56,14 @@ pip install -r requirements.txt
 
 ### Environment Setup
 
-Create a `.env` file in the project root:
-
-```env
-# BYBIT API Credentials
+Create a `api_keys.txt` file in the project root for dashboard:
+```txt
+BYBIT API Credentials
 BYBIT_API_KEY=your_api_key_here
 BYBIT_API_SECRET=your_api_secret_here
 
-# Telegram Notifications (Optional)
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
-
 # Bot Settings
-TRADING_PAIR=BTCUSDT
-TIMEFRAME=15  # in minutes
-LEVERAGE=1  # Use cautiously with higher values
-POSITION_SIZE=1  # USDT amount per trade
-RISK_PERCENTAGE=1  # Risk % of account per trade
+ALL CONFIGS IN $.py file 
 ```
 
 ### Telegram Setup (Optional but Recommended)
@@ -99,39 +90,8 @@ RISK_PERCENTAGE=1  # Risk % of account per trade
 ### Start the Bot
 
 ```bash
-python main.py
+$.py
 ```
-
-### Dashboard Access
-
-Once running, the dashboard will be available at:
-```
-http://localhost:5000
-```
-
-Monitor in real-time:
-- Active trades and positions
-- Entry/exit signals
-- Performance metrics
-- Filter status
-- Telegram notification logs
-
-### Command Line Options
-
-```bash
-# Run with custom config file
-python main.py --config config.json
-
-# Dry run (no real trades, signals only)
-python main.py --dry-run
-
-# Enable verbose logging
-python main.py --verbose
-
-# Disable Telegram notifications
-python main.py --no-telegram
-```
-
 ## Trading Logic Explained
 
 ### Entry Conditions for LONG
@@ -148,32 +108,6 @@ python main.py --no-telegram
 3. All 5 additional filters pass (or are disabled)
 ```
 
-### Available Filters (Can be toggled on/off)
-
-Each filter can be individually enabled/disabled in the configuration:
-
-1. **RSI Filter**: Prevents overbought/oversold entries
-2. **Bollinger Bands Filter**: Confirms volatility conditions
-3. **ATR Filter**: Ensures sufficient volatility for the trade
-4. **Volume Filter**: Confirms adequate trading volume
-5. **Trend Strength Filter**: Validates momentum direction
-
-## Configuration Examples
-
-### Conservative Trading
-```env
-LEVERAGE=1
-POSITION_SIZE=0.5  # Smaller position
-RISK_PERCENTAGE=0.5  # Lower risk per trade
-```
-
-### Aggressive Trading
-```env
-LEVERAGE=2
-POSITION_SIZE=5
-RISK_PERCENTAGE=2
-```
-
 ## Known Limitations & Notes
 
 ⚠️ **Disclaimer**: This bot is provided as-is. Trading cryptocurrency involves significant risk. Always start with paper trading or minimal position sizes.
@@ -188,7 +122,7 @@ RISK_PERCENTAGE=2
 ## Troubleshooting
 
 ### Bot won't connect to BYBIT
-- Verify API credentials in `.env` file
+- Verify API credentials in `.txt` file
 - Check API key has trading permissions enabled
 - Ensure IP whitelist includes your current IP (if enabled)
 
@@ -231,16 +165,6 @@ Have questions or suggestions?
 ## License
 
 This project is provided as-is for educational and trading purposes. See LICENSE file for details.
-
-## Roadmap
-
-- [ ] Multi-pair support
-- [ ] Advanced risk management (trailing stops)
-- [ ] Machine learning filter optimization
-- [ ] WebSocket streaming for real-time data
-- [ ] Historical backtesting module
-- [ ] Mobile dashboard app
-- [ ] Support for additional exchanges
 
 ---
 
